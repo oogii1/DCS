@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "receptionist")
 public class Receptionist implements Serializable {
@@ -21,9 +21,9 @@ public class Receptionist implements Serializable {
 	
 	private String employeeNo;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="person_id")
-	private Person person; 
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="uid")
+	private User user;
 
 	public Receptionist() {}
 
@@ -43,11 +43,12 @@ public class Receptionist implements Serializable {
 		this.employeeNo = employeeNo;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
+	
 }

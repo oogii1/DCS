@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "doctor")
 public class Doctor implements Serializable {
@@ -24,9 +24,9 @@ public class Doctor implements Serializable {
 	private Date startWorking;
 	private String about;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="person_id")
-	private Person person; 
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="uid")
+	private User user;
 	
 	public Doctor() {}
 
@@ -62,12 +62,11 @@ public class Doctor implements Serializable {
 		this.about = about;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 }

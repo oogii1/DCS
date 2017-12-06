@@ -1,6 +1,7 @@
 package mc.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,29 +10,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "treatment")
-public class Treatment implements Serializable {
+@Entity(name = "appointment")
+public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String condition;
 	private String treatment;
 	private String prescription;
-	private String advice;
-	private Double price;
+	private String aptmntDate;
+	private Date insertDate;
 	
 	@ManyToOne
 	@JoinColumn(name="doctor_id")
 	private Doctor doctor;
 	
 	@ManyToOne
-	@JoinColumn(name="aptmnt_id")
-	private Appointment appointment;
+	@JoinColumn(name="patient_id")
+	private Patient patient;
 	
 	@ManyToOne
-	@JoinColumn(name="tooth_no")
-	private Setting setting;
+	@JoinColumn(name="source_type")
+	private Setting sourceType;
+	
+	@ManyToOne
+	@JoinColumn(name="aptmnt_time")
+	private Setting aptmntTime;
 
 	public int getId() {
 		return id;
@@ -65,20 +71,20 @@ public class Treatment implements Serializable {
 		this.prescription = prescription;
 	}
 
-	public String getAdvice() {
-		return advice;
+	public String getAptmntDate() {
+		return aptmntDate;
 	}
 
-	public void setAdvice(String advice) {
-		this.advice = advice;
+	public void setAptmntDate(String aptmntDate) {
+		this.aptmntDate = aptmntDate;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Date getInsertDate() {
+		return insertDate;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
 	}
 
 	public Doctor getDoctor() {
@@ -89,19 +95,27 @@ public class Treatment implements Serializable {
 		this.doctor = doctor;
 	}
 
-	public Appointment getAppointment() {
-		return appointment;
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
-	public Setting getSetting() {
-		return setting;
+	public Setting getSourceType() {
+		return sourceType;
 	}
 
-	public void setSetting(Setting setting) {
-		this.setting = setting;
+	public void setSourceType(Setting sourceType) {
+		this.sourceType = sourceType;
+	}
+
+	public Setting getAptmntTime() {
+		return aptmntTime;
+	}
+
+	public void setAptmntTime(Setting aptmntTime) {
+		this.aptmntTime = aptmntTime;
 	}
 }

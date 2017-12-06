@@ -1,14 +1,11 @@
 package mc.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity(name = "country")
 public class Country implements Serializable {
@@ -19,8 +16,6 @@ public class Country implements Serializable {
 	private int id;
 	private String code;
 	private String name;
-	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-	private Set<City> cities ;
 	
 	public Country() {}
 	
@@ -42,17 +37,4 @@ public class Country implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Set<City> getCities() {
-		return cities;
 	}
-	public void setCities(Set<City> cities) {
-		this.cities = cities;
-	}
-	
-	
-	
-	
-	
-	
-}

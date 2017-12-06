@@ -30,9 +30,9 @@ public class Certificate implements Serializable {
 	@JoinColumn(name="cert_type_id")
 	private Setting setting;
 	
-	@ManyToOne
-	@JoinColumn(name="person_id")
-	private Person person;
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="uid")
+	private User user;
 	
 	public Certificate() {}
 
@@ -71,12 +71,9 @@ public class Certificate implements Serializable {
 	public Date getEndDate() {
 		return endDate;
 	}
-
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-
 	public Setting getSetting() {
 		return setting;
 	}
@@ -85,11 +82,12 @@ public class Certificate implements Serializable {
 		this.setting = setting;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
+	
 }

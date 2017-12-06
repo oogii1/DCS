@@ -2,14 +2,10 @@ package mc.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity(name = "users")
 public class User implements Serializable {
@@ -21,9 +17,10 @@ public class User implements Serializable {
 	private String userName;
 	private String pwd;
 	private String email;
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="person_id")
-	private Person person;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	
 	public int getId() {
 		return id;
 	}
@@ -48,10 +45,23 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Person getPerson() {
-		return person;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 }

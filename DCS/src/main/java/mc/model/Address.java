@@ -18,25 +18,30 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	private String cityName;
 	private String zipCode;
 	private String address;
 	private String telNo;
 	private String phoneNo;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="person_id")
-	private Person person;
+	@JoinColumn(name="uid")
+	private User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="city_id")
-	private City city;
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	public String getZipCode() {
@@ -71,19 +76,12 @@ public class Address implements Serializable {
 		this.phoneNo = phoneNo;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
+	
 }
