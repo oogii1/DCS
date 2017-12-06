@@ -1,6 +1,7 @@
 package mc.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class User implements Serializable {
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	
+	private Date regDate;
 	public int getId() {
 		return id;
 	}
@@ -63,5 +64,10 @@ public class User implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
 }

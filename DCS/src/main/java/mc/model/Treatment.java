@@ -15,7 +15,7 @@ public class Treatment implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String condition;
+	private String symptom;
 	private String treatment;
 	private String prescription;
 	private String advice;
@@ -40,13 +40,13 @@ public class Treatment implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getCondition() {
-		return condition;
+	
+	public String getSymptom() {
+		return symptom;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setSymptom(String symptom) {
+		this.symptom = symptom;
 	}
 
 	public String getTreatment() {

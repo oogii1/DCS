@@ -2,6 +2,7 @@ package mc.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "doctor")
 public class Doctor implements Serializable {
@@ -28,7 +30,8 @@ public class Doctor implements Serializable {
 	@JoinColumn(name="uid")
 	private User user;
 	
-	public Doctor() {}
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	private List<Certificate> certificates; 
 
 	public int getId() {
 		return id;
@@ -68,5 +71,13 @@ public class Doctor implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Certificate> getCertificates() {
+		return certificates;
+	}
+
+	public void setCertificates(List<Certificate> certificates) {
+		this.certificates = certificates;
 	}
 }

@@ -6,12 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class WelcomeController {
 	
 	@GetMapping("/")
 	public String home(HttpServletRequest request){
-		request.setAttribute("mode", "MODE_HOME");
-		return "index";
+		//request.setAttribute("mode", "MODE_HOME");
+		return "welcome";
 	}
 	
+	@GetMapping("/loginPage")
+	public String loginPage(HttpServletRequest request){
+		//request.setAttribute("mode", "MODE_HOME");
+		return "login";
+	}
 }
