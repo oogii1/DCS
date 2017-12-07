@@ -18,4 +18,8 @@ public class SettingService {
 	public Setting findById(Integer id){
 		return settingDAO.findOne(id);
 	}
+	
+	public Setting findByTypeAndKey(String type, String key) {
+		return settingDAO.findByTypeAndVarKey(type,key);
+	}
 }

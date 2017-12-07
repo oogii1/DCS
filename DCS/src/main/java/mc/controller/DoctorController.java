@@ -21,7 +21,7 @@ public class DoctorController {
     private UserService userService;
 	
 	//TODO get data from web page 
-	@RequestMapping(value = "/regPatient")
+	@RequestMapping(value = "/regDoctor")
     public String reg(Model model) {
 		//check if username exists 
 		String userName = "testt";//get from web
