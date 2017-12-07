@@ -40,7 +40,7 @@
             
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
             <br/>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            <h4 class="text-center"><a href="${contextPath}/regPage">Create an account</a></h4>
         </div>
 
     </form>

@@ -25,25 +25,25 @@
 
 <div class="container">
 
-    <form method="POST" action="${contextPath}/regPatient" class="form-signin">
+    <form method="POST" action="${contextPath}/regPatient" th:object="${regForm}" class="form-signin">
     
-        <center><h2 class="form-heading">Dental Clinic System</h2></center>
+        <center><h2 class="form-heading">DCS | Create an account</h2></center>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username" autofocus="true" /> 
+            <input name="userName" th:field="*{userName}" type="text" class="form-control" placeholder="Username" autofocus="true" /> 
             <br/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <input name="password" th:field="*{password}" type="password" class="form-control" placeholder="Password"/>
             <br/>
-            <input name="fisrtName" type="text" class="form-control" placeholder="Password"/>
+            <input name="fisrtName" th:field="*{fisrtName}" type="text" class="form-control" placeholder="FirstName"/>
             <br/>
-            <input name="middleName" type="text" class="form-control" placeholder="FirstName"/>
+            <input name="middleName" th:field="*{middleName}" type="text" class="form-control" placeholder="MiddleName"/>
             <br/>
-            <input name="lastName" type="text" class="form-control" placeholder="LastName"/>
+            <input name="lastName" th:field="*{lastName}" type="text" class="form-control" placeholder="LastName"/>
             <br/>
-            <input name="email" type="text" class="form-control" placeholder="Email"/>
+            <input name="email" th:field="*{email}" type="text" class="form-control" placeholder="Email"/>
             <br/>
-            <input name="insuranceNum" type="text" class="form-control" placeholder="Insurance NO."/>
+            <input name="insuranceNum" th:field="*{insuranceNum}" type="text" class="form-control" placeholder="Insurance NO."/>
             <br/>
             <span style="color:red">${error}</span>
             <br/>
