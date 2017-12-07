@@ -13,7 +13,7 @@ import mc.service.PatientService;
 import mc.service.UserService;
 
 @Controller
-public class PatientController {
+public class DoctorController {
 	
 	@Autowired
     private PatientService patientService;

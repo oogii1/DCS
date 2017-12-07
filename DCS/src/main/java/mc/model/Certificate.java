@@ -31,10 +31,6 @@ public class Certificate implements Serializable {
 	private Setting setting;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="uid")
-	private User user;
-	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="doctor_id")
 	private Doctor doctor;
 	
@@ -84,14 +80,6 @@ public class Certificate implements Serializable {
 
 	public void setSetting(Setting setting) {
 		this.setting = setting;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public Doctor getDoctor() {

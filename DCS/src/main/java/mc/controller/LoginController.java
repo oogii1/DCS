@@ -22,7 +22,7 @@ public class LoginController {
             model.addAttribute("error", "Your username and password is invalid.");
 			return "login";
 		}else {
-			return "welcome";//TODO home.jst
+			return "home";//TODO home.jsp
 		}
         
     }

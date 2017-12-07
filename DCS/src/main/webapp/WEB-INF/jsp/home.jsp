@@ -29,7 +29,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="${contextPath}/loginPage">Sign in</a></li>
-					<li><a href="${contextPath}/regPatient">Sign up</a></li>
+					<li><a href="signUp">Sign up</a></li>
 				</ul>
 			</div>
 		</div>
