@@ -28,7 +28,7 @@ public class ReactionController {
     public String reg(Model model,@ModelAttribute ReactionForm form) {
 		
 		Patient patient = patientService.findOne(form.getPatientId());
-		
+		//TODO 
 		return "welcome";//reg success page
     }
 
