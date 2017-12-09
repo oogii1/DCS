@@ -75,11 +75,12 @@ public class PatientController {
 	
 	@RequestMapping(value = "/patientHome", method = RequestMethod.GET)
     public String login(Model model, Integer uid) {
+		model.addAttribute("user",patientService.findOne(uid).getUser());
 		model.addAttribute("reactions",reactionFormService.listByPatientId(uid));
 		model.addAttribute("medicines",medicineFormService.listByPatientId(uid));
 		model.addAttribute("treatments",treatmentService.listByPatientId(uid));
 		model.addAttribute("appointments",appointmentService.listByPatientId(uid));
-		return "patient_home";
+		return "homep";
     }
 
 }
