@@ -25,6 +25,7 @@ public class LoginController {
             model.addAttribute("error", "Your username and password is invalid.");
 			return "login";
 		}else {
+			
 			return "redirect:/patientHome?uid="+user.getId();
 		}
     }

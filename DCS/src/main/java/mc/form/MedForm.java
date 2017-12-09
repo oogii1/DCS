@@ -3,11 +3,18 @@ package mc.form;
 import java.util.Date;
 
 public class MedForm {
+	private int id ;
 	private int patientId;
 	private String medicineName;
 	private String dosage;
 	private Date startDate;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getPatientId() {
 		return patientId;
 	}

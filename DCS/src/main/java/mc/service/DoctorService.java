@@ -1,5 +1,6 @@
 package mc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -34,5 +35,13 @@ public class DoctorService {
 			certificate.setDoctor(doctor);
 			certificateDAO.save(certificate);
 		}
+	}
+	
+	public List<Doctor> findAll(){
+		List<Doctor> docList = new ArrayList<>();
+		for(Doctor doc : doctorDAO.findAll()){
+			docList.add(doc);
+		}
+		return docList;
 	}
 }

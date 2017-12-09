@@ -1,11 +1,17 @@
 package mc.form;
 
-public class ReactionForm {
-	
+public class ReaForm {
+	private int id ;
 	private String medicineName;
 	private String reaction;
 	private int patientId;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getMedicineName() {
 		return medicineName;
 	}
