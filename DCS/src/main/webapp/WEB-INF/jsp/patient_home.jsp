@@ -34,8 +34,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid">
 	<div class="row">
-	  <div class="col-sm-5">
+	  <div class="col-sm-6">
 	  		<div class="row" id="reactionHistoryDiv">
 	  			<div class="panel panel-success">
 			      <div class="panel-heading">Your Reaction History</div>
@@ -155,6 +156,7 @@
 			</table>
 	  	</div>
 	  </div>
+	</div>
 	</div>
 	
 	<script src="static/js/jquery-1.11.1.min.js"></script>    

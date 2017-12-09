@@ -34,6 +34,7 @@ public class LoginController {
             model.addAttribute("error", "Your username and password is invalid.");
 			return "login";
 		}else {
+
 			System.out.println(user.getSetting().getVarValue());
 			
 			if(user.getSetting().getVarValue().equals("Patient")) {
@@ -53,6 +54,7 @@ public class LoginController {
 				return "redirect:receptionHome";
 			}
 			return "error";
+
 		}
     }
 	

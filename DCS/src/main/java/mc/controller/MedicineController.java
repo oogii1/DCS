@@ -24,12 +24,12 @@ public class MedicineController {
     private MedicineFormService medicineFormService;
 	
 	@RequestMapping(value = "/medicine/save",method = RequestMethod.POST)
-    public String reg(Model model,@ModelAttribute MedForm form) {
+    public String save(Model model,@ModelAttribute MedForm form) {
 		
 		Patient patient = patientService.findOne(form.getPatientId());
 		if(null != patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";//test//test
+			return "add_reaction";
 		}
 		MedicineForm medicineForm = new MedicineForm();
 		medicineForm.setMedicineName(form.getMedicineName());
@@ -38,6 +38,44 @@ public class MedicineController {
 		medicineForm.setPatient(patient);
 		medicineForm.setStartDate(form.getStartDate());
 		medicineFormService.save(medicineForm);
+		return "add_medicine";//TODO
+    }
+	
+	@RequestMapping(value = "/medicine/update",method = RequestMethod.POST)
+    public String update(Model model,@ModelAttribute MedForm form) {
+		
+		Patient patient = patientService.findOne(form.getPatientId());
+		if(null != patient) {
+			model.addAttribute("error","Patient not exists");
+			return "add_reaction";
+		}
+		MedicineForm medicineForm = medicineFormService.findRf(form.getId());
+		if(null == medicineForm) {
+			model.addAttribute("error","Not exists");
+			return "add_reaction";
+		}
+		medicineForm.setMedicineName(form.getMedicineName());
+		//medicineForm.setInsertDate(new Date());
+		medicineForm.setDosage(form.getDosage());
+		medicineForm.setPatient(patient);
+		medicineForm.setStartDate(form.getStartDate());
+		medicineFormService.save(medicineForm);
+		return "add_medicine";//reg success page
+    }
+	@RequestMapping(value = "/medicine/del",method = RequestMethod.POST)
+    public String delete(Model model,@ModelAttribute MedForm form) {
+		
+		Patient patient = patientService.findOne(form.getPatientId());
+		if(null != patient) {
+			model.addAttribute("error","Patient not exists");
+			return "add_reaction";
+		}
+		MedicineForm medicineForm = medicineFormService.findRf(form.getId());
+		if(null == medicineForm) {
+			model.addAttribute("error","Not exists");
+			return "add_reaction";
+		}
+		medicineFormService.delete(form.getId());
 		return "add_medicine";//reg success page
     }
 
