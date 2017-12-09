@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mc.dao.CertificateDAO;
@@ -20,6 +21,8 @@ public class DoctorService {
 	private final UserDAO userDAO;
 	private final DoctorDAO doctorDAO;
 	private final CertificateDAO certificateDAO;
+	@Autowired
+	DoctorDAO ddao;
 	public DoctorService(UserDAO userDAO,DoctorDAO doctorDAO,CertificateDAO certificateDAO) {
 		this.userDAO = userDAO;
 		this.doctorDAO = doctorDAO;
@@ -35,4 +38,8 @@ public class DoctorService {
 			certificateDAO.save(certificate);
 		}
 	}
+	public Doctor findDoctorByUser(User user) {
+		return ddao.findByUser(user);
+	}
+	
 }

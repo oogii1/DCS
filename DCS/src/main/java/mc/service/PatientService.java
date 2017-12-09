@@ -1,5 +1,7 @@
 package mc.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -28,5 +30,8 @@ public class PatientService {
 	}
 	public Patient findOne(int patientId) {
 		return patientDAO.findOne(patientId);
+	}
+	public List<Patient> findAll(){
+		return patientDAO.findAll();
 	}
 }
