@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import mc.form.ReactionForm;
 import mc.model.Patient;
-import mc.model.Setting;
-import mc.model.User;
 import mc.service.PatientService;
 import mc.service.ReactionFormService;
 
@@ -28,8 +26,17 @@ public class ReactionController {
     public String reg(Model model,@ModelAttribute ReactionForm form) {
 		
 		Patient patient = patientService.findOne(form.getPatientId());
-		
-		return "welcome";//reg success page
+		if(null != patient) {
+			model.addAttribute("error","Patient not exists");
+			return "add_reaction";
+		}
+		mc.model.ReactionForm reaction = new mc.model.ReactionForm();
+		reaction.setMedicineName(form.getMedicineName());
+		reaction.setInsertDate(new Date());
+		reaction.setPatient(patient);
+		reaction.setReaction(form.getReaction());
+		reactionFormService.save(reaction);
+		return "add_reaction";//reg success page
     }
 
 }
