@@ -32,6 +32,10 @@ public class Treatment implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="tooth_no")
 	private Setting setting;
+	
+	@ManyToOne
+	@JoinColumn(name="patient_id")
+	private Patient patient;
 
 	public int getId() {
 		return id;

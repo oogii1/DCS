@@ -13,8 +13,12 @@ import mc.form.RegForm;
 import mc.model.Patient;
 import mc.model.Setting;
 import mc.model.User;
+import mc.service.AppointmentService;
+import mc.service.MedicineFormService;
 import mc.service.PatientService;
+import mc.service.ReactionFormService;
 import mc.service.SettingService;
+import mc.service.TreatmentService;
 import mc.service.UserService;
 
 @Controller
@@ -26,6 +30,15 @@ public class PatientController {
     private UserService userService;
 	@Autowired
     private SettingService settingService;
+	@Autowired
+    private ReactionFormService reactionFormService;
+	@Autowired
+    private MedicineFormService medicineFormService;
+	@Autowired
+	private TreatmentService treatmentService;
+	@Autowired
+	private AppointmentService appointmentService;
+	
 	
 	@RequestMapping(value = "/regPatient",method = RequestMethod.POST)
     public String reg(Model model,@ModelAttribute RegForm regForm) {
@@ -57,7 +70,16 @@ public class PatientController {
 		patientService.regPatient(user, patient);
 		
 		//set session scope TODO 
-		return "welcome";
+		return "welcome";//reg success page
+    }
+	
+	@RequestMapping(value = "/patientHome", method = RequestMethod.GET)
+    public String login(Model model, Integer uid) {
+		model.addAttribute("reactions",reactionFormService.listByPatientId(uid));
+		model.addAttribute("medicines",medicineFormService.listByPatientId(uid));
+		model.addAttribute("treatments",treatmentService.listByPatientId(uid));
+		model.addAttribute("appointments",appointmentService.listByPatientId(uid));
+		return "patient_home";
     }
 
 }

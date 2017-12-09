@@ -26,4 +26,7 @@ public class PatientService {
 		patient.setUser(user);
 		patientDAO.save(patient);
 	}
+	public Patient findOne(int patientId) {
+		return patientDAO.findOne(patientId);
+	}
 }
