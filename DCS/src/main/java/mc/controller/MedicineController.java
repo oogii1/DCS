@@ -29,7 +29,7 @@ public class MedicineController {
 		Patient patient = patientService.findOne(form.getPatientId());
 		if(null != patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";//test//test
+			return "add_reaction";
 		}
 		MedicineForm medicineForm = new MedicineForm();
 		medicineForm.setMedicineName(form.getMedicineName());
