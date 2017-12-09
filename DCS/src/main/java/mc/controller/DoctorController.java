@@ -40,7 +40,7 @@ public class DoctorController {
 		user.setUserName("sunl");
 		
 		Patient patient = new Patient();
-		patient.setInsuranceNum("MUM1234343");
+		patient.setInsuranceNum("TEST123");
 		
 		patientService.regPatient(user, patient);
 		return "welcome";
