@@ -61,17 +61,22 @@
                             <li>
                                 <a href="${contextPath}/patientHome?uid=${user.id}">
                                     <span class="icon fa fa-tachometer"></span>
-                                    <span class="title">My Appointments</span>
+                                    <span class="title">Appointments</span>
                                 </a>
                             </li>
-                            <li  class="active">
-                                <a href="#DataTables_Table_0">
-                                    <span class="icon fa fa-file-text-o"></span><span class="title">My Treatments</span>
+                            <li class="active">
+                                <a href="${contextPath}/myTreatments?uid=${user.id}">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Treatments</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="${contextPath}/myReactions?uid=${user.id}">
-                                    <span class="icon fa fa-file-text-o"></span><span class="title">My Reaction Forms</span>
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Reaction History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${contextPath}/myMedHistory?uid=${user.id}">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Medicine History</span>
                                 </a>
                             </li>
                         </ul>
@@ -102,23 +107,11 @@
 											<th>Prescription</th>
 											<th>Advice</th>
 											<th>Price</th>
-											<th>ToothNo</th>
-											<th></th>
-											<th></th>
+											<th>Tooth No</th>
+											<!-- <th></th>
+											<th></th> -->
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Sympton</th>
-											<th>Treatment</th>
-											<th>Prescription</th>
-											<th>Advice</th>
-											<th>Price</th>
-											<th>ToothNo</th>
-											<th></th>
-											<th></th>
-										</tr>
-									</tfoot>
 									<tbody>
 										<c:forEach var="treatment" items="${treatments}">
 											<tr role="row">
@@ -128,8 +121,6 @@
 												<td>${treatment.advice}</td>
 												<td>${treatment.price}</td>
 												<td>${treatment.setting.varValue}</td>
-												<td><a href="update-task?id=${reaction.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-												<td><a href="delete-task?id=${reaction.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -178,6 +169,13 @@
         <script type="text/javascript" src="static/Scripts/default/select2.full.min.js"></script>
         <!-- Javascript -->
         <script type="text/javascript" src="static/Scripts/app.js"></script>
+        
+        <script>
+	        $(function() {
+	        	  $('.sorting').removeClass('sorting');
+	        	  $('.sorting_asc').removeClass('sorting_asc');
+	        	});
+        </script>
 </body>
 
 </html>

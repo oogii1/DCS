@@ -14,6 +14,7 @@ import mc.model.MedicineForm;
 import mc.model.Patient;
 import mc.service.MedicineFormService;
 import mc.service.PatientService;
+import mc.service.UserService;
 
 @Controller
 public class MedicineController {
@@ -22,61 +23,71 @@ public class MedicineController {
     private PatientService patientService;
 	@Autowired
     private MedicineFormService medicineFormService;
+	@Autowired
+    private UserService userService;
 	
 	@RequestMapping(value = "/medicine/save",method = RequestMethod.POST)
-    public String save(Model model,@ModelAttribute MedForm form) {
+    public String save(Model model,@ModelAttribute MedForm medForm) {
 		
-		Patient patient = patientService.findOne(form.getPatientId());
-		if(null != patient) {
+		Patient patient = patientService.findOne(medForm.getPatientId());
+		if(null == patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";
+			return "404";
 		}
 		MedicineForm medicineForm = new MedicineForm();
-		medicineForm.setMedicineName(form.getMedicineName());
+		medicineForm.setMedicineName(medForm.getMedicineName());
 		medicineForm.setInsertDate(new Date());
-		medicineForm.setDosage(form.getDosage());
+		medicineForm.setDosage(medForm.getDosage());
 		medicineForm.setPatient(patient);
-		medicineForm.setStartDate(form.getStartDate());
+		medicineForm.setStartDate(medForm.getStartDate());
 		medicineFormService.save(medicineForm);
-		return "add_medicine";//TODO
+		
+		return "redirect:/myMedHistory?uid="+patient.getId();
     }
 	
 	@RequestMapping(value = "/medicine/update",method = RequestMethod.POST)
-    public String update(Model model,@ModelAttribute MedForm form) {
+    public String update(Model model,@ModelAttribute MedForm medForm) {
 		
-		Patient patient = patientService.findOne(form.getPatientId());
-		if(null != patient) {
+		Patient patient = patientService.findOne(medForm.getPatientId());
+		if(null == patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";
+			return "404";
 		}
-		MedicineForm medicineForm = medicineFormService.findRf(form.getId());
+		MedicineForm medicineForm = medicineFormService.findRf(medForm.getId());
 		if(null == medicineForm) {
-			model.addAttribute("error","Not exists");
-			return "add_reaction";
+			model.addAttribute("error","ReactionForm not exists");
+			return "404";
 		}
-		medicineForm.setMedicineName(form.getMedicineName());
-		//medicineForm.setInsertDate(new Date());
-		medicineForm.setDosage(form.getDosage());
+		medicineForm.setMedicineName(medForm.getMedicineName());
 		medicineForm.setPatient(patient);
-		medicineForm.setStartDate(form.getStartDate());
+		medicineForm.setDosage(medForm.getDosage());
+		medicineForm.setStartDate(medForm.getStartDate());
+		medicineForm.setId(medForm.getId());
 		medicineFormService.save(medicineForm);
-		return "add_medicine";//reg success page
+		
+		return "redirect:/myMedHistory?uid="+patient.getId();
     }
 	@RequestMapping(value = "/medicine/del",method = RequestMethod.POST)
-    public String delete(Model model,@ModelAttribute MedForm form) {
-		
-		Patient patient = patientService.findOne(form.getPatientId());
-		if(null != patient) {
+    public String delete(Model model,int patientId,int recId) {
+		Patient patient = patientService.findOne(patientId);
+		if(null == patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";
+			return "404";
 		}
-		MedicineForm medicineForm = medicineFormService.findRf(form.getId());
-		if(null == medicineForm) {
-			model.addAttribute("error","Not exists");
-			return "add_reaction";
+		MedicineForm med = medicineFormService.findRf(recId);
+		if(null == med) {
+			model.addAttribute("error","MedicineForm not exists");
+			return "404";
 		}
-		medicineFormService.delete(form.getId());
-		return "add_medicine";//reg success page
+		medicineFormService.delete(recId);
+		return "redirect:/myMedHistory?uid="+patient.getId();
     }
+	
+	@RequestMapping(value = "/myMedHistory", method = RequestMethod.GET)
+	public String home(Model model, Integer uid){
+		model.addAttribute("user",userService.findById(uid));
+		model.addAttribute("medicines",medicineFormService.listByPatientId(uid));
+		return "medicine";
+	}
 
 }

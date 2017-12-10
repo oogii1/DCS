@@ -61,17 +61,22 @@
                             <li>
                                 <a href="${contextPath}/patientHome?uid=${user.id}">
                                     <span class="icon fa fa-tachometer"></span>
-                                    <span class="title">My Appointments</span>
+                                    <span class="title">Appointments</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="${contextPath}/myTreatments?uid=${user.id}">
-                                    <span class="icon fa fa-file-text-o"></span><span class="title">My Treatments</span>
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Treatments</span>
                                 </a>
                             </li>
                             <li class="active">
                                 <a href="${contextPath}/myReactions?uid=${user.id}">
-                                    <span class="icon fa fa-file-text-o"></span><span class="title">My Treatments</span>
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Reaction History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${contextPath}/myMedHistory?uid=${user.id}">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">Medicine History</span>
                                 </a>
                             </li>
                         </ul>
