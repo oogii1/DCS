@@ -11,7 +11,7 @@ public class WelcomeController {
 	@GetMapping("/")
 	public String home(HttpServletRequest request){
 		//request.setAttribute("mode", "MODE_HOME");
-		return "homepage";
+		return "welcome";
 	}
 	
 	@GetMapping("/loginPage")
