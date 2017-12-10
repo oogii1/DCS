@@ -38,17 +38,19 @@ public class LoginController {
 			
 			if(user.getSetting().getVarValue().equals("Patient")) {
 				session.setAttribute("patient", user);
+				session.setAttribute("type", "patient");
 				return "redirect:/patientHome?uid="+user.getId();
 			}
 				
 			if(user.getSetting().getVarValue().equals("Doctor")) {
 				Doctor doctor = doctorService.findDoctorByUser(user);
+				session.setAttribute("type", "doctor");
 				session.setAttribute("doctor", doctor);
 				return "doctorHome";//TODO doctor home.jsp
 			}
 				
 			if(user.getSetting().getVarValue().equals("Receptionist")) {
-				System.out.println("entering reception...");
+				session.setAttribute("type", "reception");
 				session.setAttribute("reception", user);
 				return "redirect:receptionHome";
 			}
