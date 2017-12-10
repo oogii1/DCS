@@ -38,8 +38,9 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="dropdown profile">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Log out
-                             <span class="caret"></span></a>
+                            <a href="${contextPath}/loginPage" class="dropdown-toggle"  role="button" aria-expanded="false">Log out
+                             <span class="caret"></span>
+                            </a>
                         </li>
                     </ul>
                 </div>
