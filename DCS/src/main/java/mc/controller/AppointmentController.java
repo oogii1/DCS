@@ -29,5 +29,26 @@ public class AppointmentController {
 		}
 		return "/appointment/create_appointment";
 	}
+	@RequestMapping(value = "/selPatient",method = RequestMethod.GET)
+	public String patientList( HttpServletRequest request, Model model) {
+		
+			model.addAttribute("patientList",paservice.findAll());
+		
+		return "/appointment/select_patient";
+	}
+	@RequestMapping(value = "/selectPatient",method = RequestMethod.GET)
+	public String selectPatient( HttpServletRequest request, Model model) {
+		if(request.getParameter("id")!=null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			HttpSession session = request.getSession();
+			Patient patient = paservice.findOne(id);
+			if(patient != null) {
+				session.setAttribute("patient", patient);
+			}
+			
+		}
+		return "/appointment/patient_selected";
+	}
+	
 
 }

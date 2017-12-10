@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<jsp:include page = "../common.jsp" />
 <html>
 <head>
 	<meta charset="utf-8">
@@ -13,49 +13,81 @@
     
     <title>Dental Clinic System | Home</title>
     
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/style.css" rel="stylesheet">
     
-    <!--[if lt IE 9]>
-		<script src="static/js/html5shiv.min.js"></script>
-		<script src="static/js/respond.min.js"></script>
-	<![endif]-->
+   
 </head>
 <body>
-<c:if test="${patient!=null}">
-
+<c:if test="${sessionScope.type !='patient'}">
+	<button type="button" class="btn btn-primary" id="selPatient">Select Patient</button>
 </c:if>
-<table>
-	<tr>
-		<td>
-			First Name
-		</td>
-		<td>
-			Last Name
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-	</tr>
-
-	<c:forEach items="${patientList}" var ="patient">
+<c:if test = "${sessionScope.type !='patient' && sessionScope.patient != null }">
+	<div id="selectedPatient">
+		<table>
 		<tr>
 			<td>
-				${patient.user.firstName}
+				Name
 			</td>
+			<td>
+				${patient.user.firstName} ${patient.user.middleName} ${patient.user.lastName}
+			</td>
+		</tr>
+		<tr>
 			<td>
 				${patient.user.lastName}
 			</td>
 			<td>
-				${patient.user.ssn}
-			</td>
-			<td>
-				${patient.user.firstName}
+				${sessionScope.patient.user.firstName} ${sessionScope.patient.user.middleName} ${sessionScope.patient.user.lastName}
 			</td>
 		</tr>
-	</c:forEach>
+		<tr>
+			<td>
+				Insurance Number 
+			</td>
+			<td>
+				${sessionScope.patient.insuranceNum}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				E-Mail
+			</td>
+			<td>
+				${sessionScope.patient.user.email}
+			</td>
+		</tr>
+		
+		
 	</table>
+	</div>
+	
+</c:if>
 
+<div id="dialog" title="Select patient"></div>
+
+<script type="text/javascript">
+var dialog;
+dialog = $("#dialog").dialog({
+    autoOpen: false,
+    height: 600,
+    width: 600,
+    modal: true,
+    buttons: {
+      Cancel: function() {
+        dialog.dialog( "close" );
+      }
+    },
+    close: function() {
+     
+    }
+  });
+	$("#selPatient").click(function(){
+		$.ajax({url: "selPatient", success: function(result){
+			 $("#dialog").html(result);
+			dialog.dialog( "open" );
+	       
+	    }});
+	});
+	
+</script>
 </body>
 </html>
