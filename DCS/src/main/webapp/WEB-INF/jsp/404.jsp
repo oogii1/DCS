@@ -51,6 +51,7 @@
                 <h1>404</h1>
             </div>
             <p class="lead text-muted">Nope, not here.</p>
+            <span style="color:red">${error}</span>
             <div class="clearfix"></div>
             <div class="col-lg-6 col-lg-offset-3">
                 <form action="index.html">

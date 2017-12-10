@@ -67,6 +67,11 @@
                                     <span class="icon fa fa-file-text-o"></span><span class="title">My Treatments</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="${contextPath}/myReactions?uid=${user.id}">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">My Reaction Forms</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

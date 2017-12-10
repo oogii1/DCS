@@ -18,6 +18,7 @@ import mc.model.ReactionForm;
 
 import mc.service.PatientService;
 import mc.service.ReactionFormService;
+import mc.service.UserService;
 
 @Controller
 public class ReactionController {
@@ -26,14 +27,16 @@ public class ReactionController {
     private PatientService patientService;
 	@Autowired
     private ReactionFormService reactionFormService;
+	@Autowired
+    private UserService userService;
 	
 	@RequestMapping(value = "/reaction/save",method = RequestMethod.POST)
     public String save(Model model,@ModelAttribute ReaForm form) {
 		
 		Patient patient = patientService.findOne(form.getPatientId());
-		if(null != patient) {
+		if(null == patient) {
 			model.addAttribute("error","Patient not exists");
-			return "add_reaction";
+			return "404";
 		}
 		ReactionForm reaction = new ReactionForm();
 		reaction.setMedicineName(form.getMedicineName());
@@ -41,7 +44,9 @@ public class ReactionController {
 		reaction.setPatient(patient);
 		reaction.setReaction(form.getReaction());
 		reactionFormService.save(reaction);
-		return "add_reaction";//reg success page
+		//model.addAttribute("user",userService.findById(patient.getId()));
+		//model.addAttribute("reactions",reactionFormService.listByPatientId(patient.getId()));
+		return "redirect:/myReactions?uid="+patient.getId();
     }
 	
 	@RequestMapping(value = "/reaction/update",method = RequestMethod.POST)
@@ -62,5 +67,12 @@ public class ReactionController {
 		reactionFormService.save(reaction);
 		return "add_reaction";//reg success page
     }
+	
+	@RequestMapping(value = "/myReactions", method = RequestMethod.GET)
+	public String home(Model model, Integer uid){
+		model.addAttribute("user",userService.findById(uid));
+		model.addAttribute("reactions",reactionFormService.listByPatientId(uid));
+		return "reaction";
+	}
 
 }
