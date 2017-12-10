@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
+
 <head>
     <title>Dental Service</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,14 +58,14 @@
                             </button>
                         </div>
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="#DataTables_Table_0">
+                            <li>
+                                <a href="${contextPath}/patientHome?uid=${user.id}">
                                     <span class="icon fa fa-tachometer"></span>
                                     <span class="title">My Appointments</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="${contextPath}/myTreatments?uid=${user.id}">
+                            <li  class="active">
+                                <a href="#DataTables_Table_0">
                                     <span class="icon fa fa-file-text-o"></span><span class="title">My Treatments</span>
                                 </a>
                             </li>
@@ -86,7 +87,7 @@
 						<div class="card">
 						<div class="card-header">
 							<div class="card-title">
-                                    <div class="title">My Appointments</div>
+                                    <div class="title">My Treatments</div>
                                     </div>
 						</div>
 
@@ -95,6 +96,18 @@
 								<table class="datatable table table-striped dataTable" id="DataTables_Table_0" 
 								role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
 									<thead>
+										<tr>
+											<th>Symptom</th>
+											<th>Treatment</th>
+											<th>Prescription</th>
+											<th>Advice</th>
+											<th>Price</th>
+											<th>ToothNo</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tfoot>
 										<tr>
 											<th>Sympton</th>
 											<th>Treatment</th>
@@ -105,9 +118,9 @@
 											<th></th>
 											<th></th>
 										</tr>
-									</thead>
+									</tfoot>
 									<tbody>
-										<c:forEach var="apt" items="${appointments}">
+										<c:forEach var="treatment" items="${treatments}">
 											<tr role="row">
 												<td>${treatment.symptom}</td>
 												<td>${treatment.treatment}</td>
@@ -116,7 +129,8 @@
 												<td>${treatment.price}</td>
 												<td>${treatment.setting.varValue}</td>
 												<td><a href="update-task?id=${reaction.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-												<td><a href="delete-task?id=${reaction.id}"><span class="glyphicon glyphicon-trash"></span></a></td>											</tr>
+												<td><a href="delete-task?id=${reaction.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
@@ -125,7 +139,28 @@
                 </div>
             </div>
         </div>
+	<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+ -->
+	<!-- Modal -->
+	<!-- <div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    Modal content
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Some text in the modal.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div> -->
 
+  </div>
+</div>
         <footer class="app-footer">
             <div class="wrapper">
                 <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span>MUM-DCS ©2017 Copyright.

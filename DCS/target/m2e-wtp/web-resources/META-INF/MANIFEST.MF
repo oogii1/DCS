@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: DCS
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: delgermaa
+Built-By: sunling
 Implementation-Vendor-Id: org.mc.project.dcs
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_91
 Implementation-URL: http://projects.spring.io/spring-boot/DCS/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
