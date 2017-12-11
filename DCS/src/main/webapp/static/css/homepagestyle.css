@@ -102,10 +102,10 @@ banner
 	min-height: 650px;
 	position: relative;
 }
-/* .bg-color{
+.bg-color{
 	background-color: RGBA(13, 70, 83, 0.78);
-	min-height: 650px;
-} */
+	min-height: 1400px;
+}
 .banner-info{
 	padding-top: 190px;
 }
@@ -125,7 +125,7 @@ banner
 	margin-top: 30px;
 	padding: 10px 20px;
 	font-size: 12px;
-	background-color: rgba(12, 184, 182, 0.91);
+	background-color: green;
 	border-radius: 3px;
 	color: #fff;
 }
