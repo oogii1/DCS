@@ -8,7 +8,7 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 20px;
-	color: #999999;
+	color: #999989;
 	font-size: 300;
 	font-size: 16px;
 }
@@ -102,10 +102,10 @@ banner
 	min-height: 650px;
 	position: relative;
 }
-.bg-color{
+/* .bg-color{
 	background-color: RGBA(13, 70, 83, 0.78);
 	min-height: 650px;
-}
+} */
 .banner-info{
 	padding-top: 190px;
 }

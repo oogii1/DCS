@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="static/css/homepagestyle.css">
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"  style="background-image:url('static/imgs/bg.jpg');background-size: 100% auto;">
   <!--banner-->
   <section id="banner" class="banner">
     <div class="bg-color">
@@ -31,6 +31,11 @@
 				      </button>
               <a class="navbar-brand" href="#"></a>
             </div>
+            <div class="collapse navbar-collapse navbar-left">
+              <ul class="nav navbar-nav">
+                <li><img alt="" width="20%" height="20%" src="static/imgs/logo.png">&nbsp; | &nbsp;  MUM-DCS</li>
+              </ul>
+            </div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#banner">Home</a></li>
@@ -44,11 +49,9 @@
       <div class="container">
         <div class="row">
           <div class="banner-info">
-<!--     <div class="banner-logo text-center">
-              <img src="img/logo.png" class="img-responsive">
-            </div> -->        
             <div class="banner-text text-center">
               <h1 class="white">Healthcare at your desk!!</h1>
+              <!-- <img alt="" src="static/imgs/bg1.gif"> -->
               <a href="#contact" class="btn btn-appoint">Make an Appointment.</a>
             </div>
           </div>
