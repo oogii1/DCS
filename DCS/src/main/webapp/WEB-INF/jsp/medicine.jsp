@@ -144,39 +144,7 @@
             </div>
         </div>
 	
-	<!-- add_medicine -->
-	<div id="add_medicine" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-		    Add Reaction Form
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title" style="text-align:center">Add Your Medicine Form</h4>
-	      </div>
-	      <form method="POST" action="${contextPath}/medicine/save" th:object="${medForm}" class="form-signin">
-		      <div class="modal-body">
-			        <div>
-			       	 	<input type="hidden" name = "patientId" value ="${user.id}">
-			       	 	
-			            <input name="medicineName" th:field="*{userName}" type="text" class="form-control" 
-			            		placeholder="Medicine Name" autofocus="true" /> 
-			            <br/>
-			            <input name="dosage" th:field="*{dosage}" type="number" class="form-control" placeholder="Dosage" /> 
-			            <br/>
-			            
-			            <input name="startDate" id="startDateDP" th:field="*{startDate}" 
-			            		type="text" class="form-control" placeholder="Start Date" /> 
-			            <br/>
-			        </div>
-		      </div>
-		      <div class="modal-footer">
-		      	<button class="btn btn-primary" type="submit">Save</button>
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-	      </form>
-	    </div>
-  		</div>
-	</div>
+	
 	
 	<!-- update_medicine -->
 	<div id="update_medicine" class="modal fade" role="dialog">

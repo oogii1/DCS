@@ -21,7 +21,7 @@
 	<button type="button" class="btn btn-primary" id="selPatient">Select Patient</button>
 </c:if>
 <c:if test = "${sessionScope.type !='patient' && sessionScope.patient != null }">
-	<div id="selectedPatient">
+	<div id="selected_patient">
 		<table>
 		<tr>
 			<td>

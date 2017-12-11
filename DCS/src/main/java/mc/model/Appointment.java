@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "appointment")
 public class Appointment implements Serializable {
@@ -20,7 +22,12 @@ public class Appointment implements Serializable {
 	private String symptom;
 	private String treatment;
 	private String prescription;
-	private String aptmntDate;
+	
+	@Temporal(TemporalType.DATE)
+	private Date aptmntDate;
+	
+	
+	
 	private Date insertDate;
 	
 	@ManyToOne
@@ -35,9 +42,8 @@ public class Appointment implements Serializable {
 	@JoinColumn(name="source_type")
 	private Setting sourceType;
 	
-	@ManyToOne
-	@JoinColumn(name="aptmnt_time")
-	private Setting aptmntTime;
+	
+	private String aptmntTime;
 
 	public int getId() {
 		return id;
@@ -70,11 +76,13 @@ public class Appointment implements Serializable {
 		this.prescription = prescription;
 	}
 
-	public String getAptmntDate() {
+	
+
+	public Date getAptmntDate() {
 		return aptmntDate;
 	}
 
-	public void setAptmntDate(String aptmntDate) {
+	public void setAptmntDate(Date aptmntDate) {
 		this.aptmntDate = aptmntDate;
 	}
 
@@ -110,11 +118,72 @@ public class Appointment implements Serializable {
 		this.sourceType = sourceType;
 	}
 
-	public Setting getAptmntTime() {
+	public String getAptmntTime() {
 		return aptmntTime;
 	}
 
-	public void setAptmntTime(Setting aptmntTime) {
+	public void setAptmntTime(String aptmntTime) {
 		this.aptmntTime = aptmntTime;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aptmntDate == null) ? 0 : aptmntDate.hashCode());
+		result = prime * result + ((aptmntTime == null) ? 0 : aptmntTime.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((insertDate == null) ? 0 : insertDate.hashCode());
+		result = prime * result + ((prescription == null) ? 0 : prescription.hashCode());
+		result = prime * result + ((symptom == null) ? 0 : symptom.hashCode());
+		result = prime * result + ((treatment == null) ? 0 : treatment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Appointment other = (Appointment) obj;
+		if (aptmntDate == null) {
+			if (other.aptmntDate != null)
+				return false;
+		} else if (!aptmntDate.equals(other.aptmntDate))
+			return false;
+		if (aptmntTime == null) {
+			if (other.aptmntTime != null)
+				return false;
+		} else if (!aptmntTime.equals(other.aptmntTime))
+			return false;
+		if (id != other.id)
+			return false;
+		if (insertDate == null) {
+			if (other.insertDate != null)
+				return false;
+		} else if (!insertDate.equals(other.insertDate))
+			return false;
+		if (prescription == null) {
+			if (other.prescription != null)
+				return false;
+		} else if (!prescription.equals(other.prescription))
+			return false;
+		if (symptom == null) {
+			if (other.symptom != null)
+				return false;
+		} else if (!symptom.equals(other.symptom))
+			return false;
+		if (treatment == null) {
+			if (other.treatment != null)
+				return false;
+		} else if (!treatment.equals(other.treatment))
+			return false;
+		return true;
+	}
+
+		
+	
 }

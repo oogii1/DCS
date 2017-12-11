@@ -34,4 +34,9 @@ public class AppointmentService {
 	public void delete(int id){
 		appointmentDAO.delete(id);
 	}
+	
+	public List<Appointment> listByTimeAndDate(String date, String time){
+		return appointmentDAO.listByTimeAndDate( date,  time);
+		
+	}
 }

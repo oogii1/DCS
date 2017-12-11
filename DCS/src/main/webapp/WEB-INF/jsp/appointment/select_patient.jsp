@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page = "../common.jsp" />
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -14,7 +14,8 @@
 </head>
 <body>
 
-<table class="table table-dark">
+<table class="datatable table table-striped dataTable" id="DataTables_Table_0" 
+								role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
 	<tr>
 		<th>
 			First Name
@@ -32,7 +33,7 @@
 			Action
 		</th>
 	</tr>
-
+	<tbody>
 	<c:forEach items="${patientList}" var ="patient">
 		<tr>
 			<td>
@@ -48,25 +49,12 @@
 				${patient.user.email}
 			</td>
 			<td>
-			<button type="button" class="btn btn-success" name="asdasd" id="select" onclick="select(${patient.id});">Select</button>
+			<button type="button" class="btn btn-success" name="asdasd" id="select" onclick="select('${patient.id}');">Select</button>
 		</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 	</table>
-	<div id="dialog-message" title="Selected patient">
-		
-	</div>
-<script type="text/javascript">
 	
-	function select(id){
-		$.ajax({url: "selectPatient?id=" + id, success: function(result){
-			$("#selectedPatient").html(result);
-			dialog.dialog("close");
-			
-	    }});
-		
-	}
-	
-</script>
 </body>
 </html>

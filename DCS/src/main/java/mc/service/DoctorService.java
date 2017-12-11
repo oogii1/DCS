@@ -47,11 +47,11 @@ public class DoctorService {
 
 	
 	public List<Doctor> findAll(){
-		List<Doctor> docList = new ArrayList<>();
-		for(Doctor doc : doctorDAO.findAll()){
-			docList.add(doc);
-		}
-		return docList;
+		return ddao.findAll();
+	}
+	
+	public Doctor findById(int id) {
+		return ddao.findById(id);
 	}
 
 }

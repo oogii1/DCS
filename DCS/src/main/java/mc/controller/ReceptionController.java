@@ -24,7 +24,7 @@ private HttpSession session;
     public String login(Model model, String username,String password, HttpServletRequest request) {
 		session = request.getSession();
 		
-			return "/reception/receptionHome";
+			return "/reception/homer";
 		}
     }
 	
