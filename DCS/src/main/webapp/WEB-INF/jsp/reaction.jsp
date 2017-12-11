@@ -117,7 +117,7 @@
 												<td>${reaction.reaction}</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${reaction.insertDate}"/></td>
 												<td> 
-													<a href="#" id="updateReaction" 
+													<a href="#" id="updateReaction${reaction.id}" onclick="update(${reaction.id})"
 														data-id="${reaction.id}" 
 														data-patientId="${user.id}"
 														data-medname="${reaction.medicineName}"
@@ -216,16 +216,17 @@
         <!-- Javascript -->
         <script type="text/javascript" src="static/Scripts/app.js"></script>
         <script>
+        		function update(id){
+        			var obj = $("#updateReaction"+id);
+        			$("#uptId").val(obj.attr("data-id"));
+	        		  $("#uptPatientId").val(obj.attr("data-patientId"));
+	        		  $("#uptMedName").val(obj.attr("data-medname"));
+	        		  $("#uptReaction").val(obj.attr("data-reaction"));
+	        		  $('#update_reaction').modal('show');
+        		}
 	        $(function() {
 	        	  $('.sorting').removeClass('sorting');
 	        	  $('.sorting_asc').removeClass('sorting_asc');
-	        	  $("#updateReaction").click(function(){
-	        		  $("#uptId").val($(this).attr("data-id"));
-	        		  $("#uptPatientId").val($(this).attr("data-patientId"));
-	        		  $("#uptMedName").val($(this).attr("data-medname"));
-	        		  $("#uptReaction").val($(this).attr("data-reaction"));
-	        		  $('#update_reaction').modal('show');
-	        		}); 
 	        	});
         </script>
 </body>

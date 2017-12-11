@@ -120,7 +120,7 @@
 												<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${med.startDate}"/></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${med.insertDate}"/></td>
 												<td> 
-													<a href="#" id="updateMedicineForm" 
+													<a href="#" id="updateMedicine${med.id}" onclick="update(${med.id})"
 														data-id="${med.id}" 
 														data-patientId="${user.id}"
 														data-medname="${med.medicineName}"
@@ -197,6 +197,15 @@
         <!-- Javascript -->
         <script type="text/javascript" src="static/Scripts/app.js"></script>
         <script>
+		    	function update(id){
+		    		$("#uptId").val($("#updateMedicine"+id).attr("data-id"));
+	        		$("#uptPatientId").val($("#updateMedicine"+id).attr("data-patientId"));
+	        		$("#uptMedName").val($("#updateMedicine"+id).attr("data-medname"));
+	        		$("#uptDosage").val($("#updateMedicine"+id).attr("data-dosage"));
+	        		var dateFormat = $.datepicker.formatDate('yy-mm-dd', new Date($("#updateMedicine"+id).attr("data-startDate")));
+	        		$("#uptStartDateDP").val(dateFormat);
+	        		$('#update_medicine').modal('show');
+		    	}
 	        $(function() {
 	        		$( "#startDateDP" ).datepicker();
 	        		$( "#uptStartDateDP" ).datepicker();
@@ -204,17 +213,6 @@
 		        	$('.sorting').removeClass('sorting');
 		        	$('.sorting_asc').removeClass('sorting_asc');
 		        	
-		        	$("#updateMedicineForm").click(function(){
-	        		  $("#uptId").val($(this).attr("data-id"));
-	        		  $("#uptPatientId").val($(this).attr("data-patientId"));
-	        		  $("#uptMedName").val($(this).attr("data-medname"));
-	        		  $("#uptDosage").val($(this).attr("data-dosage"));
-	        		  
-	        		  var dateFormat = $.datepicker.formatDate('yy-mm-dd', new Date($(this).attr("data-startDate")));
-	        		  $("#uptStartDateDP").val(dateFormat);
-	        		  
-	        		  $('#update_medicine').modal('show');
-	        		});
 	        	});
         </script>
 </body>
