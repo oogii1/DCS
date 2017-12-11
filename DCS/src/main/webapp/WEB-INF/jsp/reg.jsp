@@ -48,7 +48,7 @@
             <span style="color:red">${error}</span>
             <br/>
             
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sin Up</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             <br/>
         </div>
 

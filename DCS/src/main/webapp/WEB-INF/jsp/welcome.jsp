@@ -16,7 +16,8 @@
   <link rel="stylesheet" type="text/css" href="static/css/homepagestyle.css">
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"  style="background-image:url('static/imgs/bg.jpg');background-size: 100% auto;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"  
+	style="background-image:url('static/imgs/bg.jpg');background-size: 125% auto !important;">
   <!--banner-->
   <section id="banner" class="banner">
     <div class="bg-color">
