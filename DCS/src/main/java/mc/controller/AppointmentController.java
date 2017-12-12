@@ -69,8 +69,11 @@ public class AppointmentController {
 		return "/appointment/patient_selected";
 	}
 	@RequestMapping(value = "/appointmentListByPatient", method = RequestMethod.GET)
-    public String appointmentList(Model model, Integer uid) {
-		model.addAttribute("appointments",appointmentService.listByPatientId(uid));
+    public String appointmentList(Model model, HttpServletRequest request) {
+		;
+		HttpSession session = request.getSession();
+		Patient patient = (Patient)session.getAttribute("patient");
+		model.addAttribute("appointments",appointmentService.listByPatientId(patient.getId()));
 		return "/appointment/appointment_list";
     }
 	

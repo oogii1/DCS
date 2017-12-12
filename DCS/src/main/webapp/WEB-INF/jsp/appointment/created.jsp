@@ -16,6 +16,6 @@
 
 </body>
 <script>
-get_appointment_list('${patient_id}');
+get_appointment_list();
 </script>
 </html>

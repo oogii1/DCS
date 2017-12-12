@@ -6,19 +6,21 @@
 <head>
     <title>Dental Service</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSS Libs -->
-    <link rel="stylesheet" type="text/css" href="static/css/default/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/default/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/default/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/default/bootstrap-switch.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/default/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/default/dataTables.bootstrap.css">
-    <link type="text/css" href="static/css/default/jquery-ui.css" rel="stylesheet" />
-    <!-- CSS App -->
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="static/css/themes/flat-blue.css">
+    <jsp:include page = "common.jsp" />
 </head>
-
+<script>
+     
+	        $(function() {
+	        	  $('.sorting').removeClass('sorting');
+	        	  $('.sorting_asc').removeClass('sorting_asc');
+	        	});
+	        function get_appointment_list(){
+	        	$.ajax({url: "appointmentListByPatient", success: function(result){
+	    			$("#appointment_list").html(result);
+	    			
+	    	    }});
+	        }
+        </script>
 <body class="flat-blue">
     <div class="app-container">
         <div class="row content-container">
@@ -94,34 +96,13 @@
 							<div class="card-title">
                                     <div class="title">My Appointments</div>
                                     </div>
+                                    <button type="button" class="btn btn-primary"
+                          		style="width: 160px;float: right;margin-right: 17px; margin-top: 12px;" id="make_appointment">Make Appointment</button>
 						</div>
 
 						<div class="card-body">
 							<div class="row">
-								<table class="datatable table table-striped dataTable" id="DataTables_Table_0" 
-								role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
-									<thead>
-										<tr>
-											
-											<th>Appointment Date</th>
-											<th>Appointment Time</th>
-											<th>Doctor</th>
-											<!-- <th></th>
-											<th></th> -->
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="apt" items="${appointments}">
-											<tr role="row">
-												
-												<td>${apt.aptmntDate}</td>
-												<td>${apt.aptmntTime}</td>
-												<td>${apt.doctor.user.firstName}</td>
-												<%-- <td><a href="update-task?id=${apt.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-												<td><a href="delete-task?id=${apt.id}"><span class="glyphicon glyphicon-trash"></span></a></td>	 --%>										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+								<div id="appointment_list"></div>
 							</div>
                     </div>
                 </div>
@@ -133,24 +114,51 @@
                 <span class="pull-right">2.1 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span>MUM-DCS ©2017 Copyright.
             </div>
         </footer>
+        <div id="make_apppointment_modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		    Make appointment
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title" style="text-align:center">Create an Appointment</h4>
+	      </div>
+		      <div class="modal-body" id="make_appointment_body">
+		      	
+		      </div>
+		      <div class="modal-footer">
+		      	<button class="btn btn-primary" type="button" id="save_appointment">Make</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+	    </div>
+  		</div>
+	</div>
 
-        <!-- Javascript Libs -->
-        <script type="text/javascript" src="static/Scripts/default/jquery.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/bootstrap.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/bootstrap-switch.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/jquery.matchHeight-min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="static/Scripts/default/select2.full.min.js"></script>
-        <!-- Javascript -->
-        <script type="text/javascript" src="static/Scripts/app.js"></script>
+        
         
         <script>
 	        $(function() {
 	        	  $('.sorting').removeClass('sorting');
 	        	  $('.sorting_asc').removeClass('sorting_asc');
+	        	  get_appointment_list()
 	        	});
+	        $("#make_appointment").click(function(){
+	    		$.ajax({url: "makeAppointment", success: function(result){
+	    			 $("#make_appointment_body").html(result);
+	    			 $("#make_apppointment_modal").modal("show");
+	    			 
+	    	       
+	    	    }});
+	    	});
+	        $("#save_appointment").click(function(){
+	        	var date=$('#date').val();
+    			var time=$('#time').val();
+	    		$.ajax({url: "saveAppointment?date="+date+"&time="+time + "", success: function(result){
+	    			$("#created").html(result);
+	    			get_appointment_list();
+	    			$("#make_apppointment_modal").modal("hide");
+	    	    }});
+	    	});
+	        
         </script>
 </body>
 

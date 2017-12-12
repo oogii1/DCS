@@ -11,20 +11,17 @@
    
 </head>
 <script>
-        $("#get_patient_list").click(function(){
+        /*$("#get_patient_list").click(function(){
     		$.ajax({url: "selPatient", success: function(result){
     			 $("#patien_list").html(result);
     			 $("#select_patient_modal").modal("show");
     			
     	       
     	    }});
-    	});
-	        $(function() {
-	        	  $('.sorting').removeClass('sorting');
-	        	  $('.sorting_asc').removeClass('sorting_asc');
-	        	});
-	        function get_appointment_list(id){
-	        	$.ajax({url: "appointmentListByPatient?uid=" + id, success: function(result){
+    	});*/
+	        
+	        function get_appointment_list(){
+	        	$.ajax({url: "appointmentListByPatient", success: function(result){
 	    			$("#appointment_list").html(result);
 	    			
 	    	    }});
@@ -33,7 +30,7 @@
 	        function select(id){
 	    		$.ajax({url: "selectPatient?id=" + id, success: function(result){
 	    			$("#selected_patient").html(result);
-	    			get_appointment_list(id);
+	    			get_appointment_list();
 	    			$("#select_patient_modal").modal("hide");
 	    	    }});
 	    		
