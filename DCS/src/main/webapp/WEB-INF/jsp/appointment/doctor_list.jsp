@@ -31,7 +31,7 @@
 											<tr role="row">
 												<td>${doc.user.firstName}</td>
 												
-												<td><button type="button" class="btn btn-success" onclick="selectDoctor('${doc.id}');">Select ${doc.id}</button> </td>
+												<td><button type="button" class="btn btn-success" onclick="selectDoctor('${doc.id}');">Select</button> </td>
 												
 												<%-- <td><a href="update-task?id=${apt.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 												<td><a href="delete-task?id=${apt.id}"><span class="glyphicon glyphicon-trash"></span></a></td>	 --%>										</tr>

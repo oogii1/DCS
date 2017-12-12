@@ -102,12 +102,10 @@
 								role="grid" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
 									<thead>
 										<tr>
-											<th>Sympton</th>
-											<th>Treatment</th>
-											<th>Prescription</th>
-											<th>Tooth No</th>
+											
 											<th>Appointment Date</th>
 											<th>Appointment Time</th>
+											<th>Doctor</th>
 											<!-- <th></th>
 											<th></th> -->
 										</tr>
@@ -115,12 +113,10 @@
 									<tbody>
 										<c:forEach var="apt" items="${appointments}">
 											<tr role="row">
-												<td>${apt.symptom}</td>
-												<td>${apt.treatment}</td>
-												<td>${apt.prescription}</td>
-												<td>${apt.sourceType.varValue}</td>
+												
 												<td>${apt.aptmntDate}</td>
 												<td>${apt.aptmntTime}</td>
+												<td>${apt.doctor.user.firstName}</td>
 												<%-- <td><a href="update-task?id=${apt.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 												<td><a href="delete-task?id=${apt.id}"><span class="glyphicon glyphicon-trash"></span></a></td>	 --%>										</tr>
 										</c:forEach>

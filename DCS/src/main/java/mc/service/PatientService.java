@@ -34,4 +34,9 @@ public class PatientService {
 	public List<Patient> findAll(){
 		return patientDAO.findAll();
 	}
+	
+	public Patient findByUser(User user) {
+		return patientDAO.findByUser(user);
+	}
+	
 }

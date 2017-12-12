@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import mc.model.Patient;
+import mc.model.User;
 
 public interface PatientDAO extends CrudRepository<Patient, Integer>{
 	
@@ -12,5 +13,7 @@ public interface PatientDAO extends CrudRepository<Patient, Integer>{
 //			nativeQuery = true)
 //	Patient findByPatientNameAndPwd(String PatientName, String pwd);
 	public List<Patient> findAll();
+	
+	public Patient findByUser( User user);
 	
 }

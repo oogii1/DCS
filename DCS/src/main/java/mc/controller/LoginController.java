@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import mc.model.Doctor;
 import mc.model.User;
 import mc.service.DoctorService;
+import mc.service.PatientService;
+import mc.service.ReceptionService;
 import mc.service.UserService;
 
 @Controller
@@ -24,6 +26,10 @@ public class LoginController {
     private UserService userService;
 	@Autowired
     private DoctorService doctorService;
+	@Autowired
+    private PatientService patientService;
+	@Autowired
+	ReceptionService rservice;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(Model model, String username,String password, HttpServletRequest request) {
@@ -37,7 +43,8 @@ public class LoginController {
 			System.out.println(user.getSetting().getVarValue());
 			
 			if(user.getSetting().getVarValue().equals("Patient")) {
-				session.setAttribute("patient", user);
+				
+				session.setAttribute("patient", patientService.findByUser(user));
 				session.setAttribute("type", "patient");
 				return "redirect:/patientHome?uid="+user.getId();
 			}
@@ -46,12 +53,12 @@ public class LoginController {
 				Doctor doctor = doctorService.findDoctorByUser(user);
 				session.setAttribute("type", "doctor");
 				session.setAttribute("doctor", doctor);
-				return "doctorHome";//TODO doctor home.jsp
+				return "redirect:doctorHome";
 			}
 				
 			if(user.getSetting().getVarValue().equals("Receptionist")) {
 				session.setAttribute("type", "reception");
-				session.setAttribute("reception", user);
+				session.setAttribute("reception", rservice.findByUser(user));
 				return "redirect:receptionHome";
 			}
 			return "error";

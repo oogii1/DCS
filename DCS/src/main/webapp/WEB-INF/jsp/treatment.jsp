@@ -117,7 +117,7 @@
 										<c:forEach var="treatment" items="${treatments}">
 											<tr role="row">
 												<td>${treatment.symptom}</td>
-												<td>${treatment.treatment}</td>
+												<td>${treatment.treatments}</td>
 												<td>${treatment.prescription}</td>
 												<td>${treatment.advice}</td>
 												<td>${treatment.price}</td>

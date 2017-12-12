@@ -1,5 +1,7 @@
 package mc.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +23,9 @@ public class SettingService {
 	
 	public Setting findByTypeAndKey(String type, String key) {
 		return settingDAO.findByTypeAndVarKey(type,key);
+	}
+	
+	public List<Setting> listByType(String type){
+		return settingDAO.findByType(type);
 	}
 }

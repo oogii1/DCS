@@ -16,7 +16,7 @@ public class Treatment implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String symptom;
-	private String treatment;
+	private String treatments;
 	private String prescription;
 	private String advice;
 	private Double price;
@@ -53,12 +53,12 @@ public class Treatment implements Serializable {
 		this.symptom = symptom;
 	}
 
-	public String getTreatment() {
-		return treatment;
+	public String getTreatments() {
+		return treatments;
 	}
 
-	public void setTreatment(String treatment) {
-		this.treatment = treatment;
+	public void setTreatments(String treatment) {
+		this.treatments = treatment;
 	}
 
 	public String getPrescription() {
@@ -108,4 +108,13 @@ public class Treatment implements Serializable {
 	public void setSetting(Setting setting) {
 		this.setting = setting;
 	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+	
 }

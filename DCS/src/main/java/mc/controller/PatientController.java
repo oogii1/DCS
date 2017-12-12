@@ -84,6 +84,7 @@ public class PatientController {
     }
 	@RequestMapping(value = "/myTreatments", method = RequestMethod.GET)
 	public String home(Model model, Integer uid){
+		
 		model.addAttribute("user",userService.findById(uid));
 		model.addAttribute("treatments",treatmentService.listByPatientId(uid));
 		return "treatment";

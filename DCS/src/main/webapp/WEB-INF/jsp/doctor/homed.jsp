@@ -15,17 +15,15 @@
     		$.ajax({url: "selPatient", success: function(result){
     			 $("#patien_list").html(result);
     			 $("#select_patient_modal").modal("show");
-    			
-    	       
     	    }});
     	});
 	        $(function() {
 	        	  $('.sorting').removeClass('sorting');
 	        	  $('.sorting_asc').removeClass('sorting_asc');
 	        	});
-	        function get_appointment_list(id){
-	        	$.ajax({url: "appointmentListByPatient?uid=" + id, success: function(result){
-	    			$("#appointment_list").html(result);
+	        function get_treatment_list(){
+	        	$.ajax({url: "treatmentListByPatient", success: function(result){
+	    			$("#treatment_list").html(result);
 	    			
 	    	    }});
 	        }
@@ -33,8 +31,8 @@
 	        function select(id){
 	    		$.ajax({url: "selectPatient?id=" + id, success: function(result){
 	    			$("#selected_patient").html(result);
-	    			get_appointment_list(id);
-	    			$("#select_patient_modal").modal("hide");
+	    			get_treatment_list();
+	    			
 	    	    }});
 	    		
 	    		
@@ -51,7 +49,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
                         <ol class="breadcrumb navbar-breadcrumb">
-                            <li class="active">${sessionScope.reception.user.userName}</li>
+                            <li class="active">${sessionScope.doctor.user.userName}</li>
                         </ol>
                         <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -73,7 +71,7 @@
                         <div class="navbar-header">
                             <a class="navbar-brand" href="#">
                                 <div class="icon fa fa-paper-plane"></div>
-                                <div class="title">${sessionScope.reception.user.userName}</div>
+                                <div class="title">${sessionScope.doctor.user.userName}</div>
                             </a>
                             <button type="button" class="navbar-expand-toggle pull-right visible-xs">
                                 <i class="fa fa-times icon"></i>
@@ -88,6 +86,7 @@
             <div class="container-fluid">
                 <div class="side-body padding-top">
                 	<div class="row">
+                		<div class="col-sm-6" style="padding-left:0px !important; padding-top:5px !important">
                 		<div class="card">
 							<div class="card-header">
 								<div class="card-title">
@@ -101,19 +100,18 @@
 									<thead>
 										<tr>
 											<th>Patient</th>
-											<th>Doctor</th>
 											<th>Appointment Date</th>
 											<th>Appointment Time</th>
-											
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="aptmnt" items="${appointments}">
 											<tr role="row">
 												<td>${aptmnt.patient.user.firstName}</td>
-												<td>${aptmnt.doctor.user.firstName}</td>
 												<td>${aptmnt.aptmntDate}</td>
 												<td>${aptmnt.aptmntTime}</td>
+												<td> <button type="button" class="btn btn-success" onclick="select('${aptmnt.patient.id}');">Select</button></td>
 												<%-- <td><a href="update-task?id=${apt.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 												<td><a href="delete-task?id=${apt.id}"><span class="glyphicon glyphicon-trash"></span></a></td>	 --%>										</tr>
 										</c:forEach>
@@ -122,17 +120,14 @@
 							</div>
                     </div>
 				</div>	
-             </div>
-             <div class="row">
-                 <div class="col-sm-6" style="padding-left:0px !important; padding-top:5px !important">
+				</div>
+				<div class="col-sm-6" style="padding-left:0px !important; padding-top:5px !important">
                  <!--  Main contents goes here-->
 					<div class="card">
 						<div class="card-header">
 							<div class="card-title">
-                                    <div class="title">Patient information</div>
+                            	<div class="title">Patient information</div>
                             </div>
-                            <button type="button" class="btn btn-primary"
-                          		style="width: 120px;float: right;margin-right: 17px; margin-top: 12px;" id="get_patient_list">Select patient</button>
 						</div>
 
 						<div class="card-body">
@@ -148,52 +143,29 @@
                     </div>
                 </div>
                 </div>
-              	<div class="col-sm-6" style="padding-right:0px !important; padding-top:5px !important">
-                <div class="card">
-						<div class="card-header">
-							<div class="card-title">
-                                    <div class="title">Patient Appointments</div>
-                                    </div>
-                                    <button type="button" class="btn btn-primary"
-                          		style="width: 160px;float: right;margin-right: 17px; margin-top: 12px;" id="make_appointment">Make Appointment</button>
-						</div>
+             </div>
+             <div class="row">
+                		<div class="card">
+							<div class="card-header">
+								<div class="card-title">
+                                    <div class="title">Treatments</div>
+                            	</div>
+                            	<button type="button" class="btn btn-primary"  data-toggle="modal" 
+                          		data-target="#create_treatment"  style="width: 140px;float: right;margin-right: 17px; margin-top: 12px;">Create Treatment</button>
+							</div>
 						<div class="card-body">
-							<div class="row">
-								<div id="appointment_list"></div>
+							<div class="row" id="treatment_list">
+								
 							</div>
                     </div>
-                </div>
-                </div>
-                </div>
+				</div>	
+			
+				
+             </div>
             </div>
         </div>
         </div>
-       
-        
-        <!-- select_patient -->
-	<div id="select_patient_modal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-		    Select Patient
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title" style="text-align:center">Select Patient</h4>
-	      </div>
-	      
-		      <div class="modal-body">
-			        <div id="patien_list">
-			       	 	
-			        </div>
-		      </div>
-		      <div class="modal-footer">
-		      	<button class="btn btn-primary" type="submit">Save</button>
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-	      
-	    </div>
-  		</div>
-	</div>
-	<!-- add_medicine -->
+	<!-- make_appointment -->
 	<div id="make_apppointment_modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 		    Make appointment
@@ -218,8 +190,50 @@
             </div>
         </footer>
   </div>
-  </div>
-		<div id="created"></div>
+ 
+	<!-- create_treatment -->
+	<div id="create_treatment" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		    Create Treatment
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title" style="text-align:center">Treatment</h4>
+	      </div>
+	      <form method="post" action="saveTreatment" th:object="${trForm}" class="form-signin">
+		      <div class="modal-body">
+		      
+			        <div>
+			       	 	<select name="setting" class="form-control" id="selector" >
+				            <c:forEach items="${teeth}" var="tooth" > 
+				                <option value="${tooth.id}">${tooth.varValue}</option>
+				            </c:forEach>
+				        </select>   
+			            <input name="symptom" type="text" class="form-control" placeholder="Symptom"  /> 
+			            <br/>
+      					<textarea name="treatments" class="form-control" rows="5" placeholder="Treatment"></textarea>
+			            <br/>
+			            <textarea name="prescription" class="form-control" rows="3" placeholder="Prescription"></textarea> 
+			            <br/>
+			            <textarea name="advice" class="form-control" rows="3" placeholder="Advice"></textarea>
+			            <br/>
+			            <div class="input-group">
+			             <span class="input-group-addon">$</span>
+    					<input type="text" name="price" class="form-control" placeholder="Price"/>
+			            </div>
+			        </div>
+			        
+		      </div>
+		      
+		      <div class="modal-footer">
+		      	<button class="btn btn-primary" type="submit">Save</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		      </form>
+		      
+	    </div>
+  		</div>
+	</div>
 		
        <script>
         $("#get_patient_list").click(function(){

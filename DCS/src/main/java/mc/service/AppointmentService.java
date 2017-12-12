@@ -1,5 +1,6 @@
 package mc.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -36,7 +37,16 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment> listByTimeAndDate(String date, String time){
-		return appointmentDAO.listByTimeAndDate( date,  time);
+		return appointmentDAO.findByAptmntDateAndAptmntTimeGroupByDoctor( date,  time);
+		
+	}
+	public List<Appointment> listByDateGreaterThan(){
+		return appointmentDAO.findByAptmntDateGreaterThan(new Date());
+		
+	}
+	
+	public List<Appointment> listByDate(){
+		return appointmentDAO.findByAptmntDate(new Date());
 		
 	}
 }
