@@ -49,12 +49,14 @@
 				${patient.user.email}
 			</td>
 			<td>
+
 			<button type="button" class="btn btn-success" name="asdasd" id="select" onclick="select('${patient.id}');">Select</button>
+
 		</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 	</table>
-	
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!-- Javascript Libs -->
+<!-- Javascript Libs --> 
         <script type="text/javascript" src="static/Scripts/default/jquery.min.js"></script>
         <script type="text/javascript" src="static/Scripts/default/jquery-ui.min.js"></script>
         <script type="text/javascript" src="static/Scripts/default/bootstrap.min.js"></script>
